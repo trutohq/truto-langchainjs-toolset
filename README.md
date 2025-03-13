@@ -5,9 +5,9 @@ A powerful toolset for integrating Truto's Proxy APIs with Langchain.js applicat
 ## Installation
 
 ```bash
-npm install @truto/superai-langchain-toolset
+npm install @truto/langchain-toolset
 # or
-yarn add @truto/superai-langchain-toolset
+yarn add @truto/langchain-toolset
 ```
 
 ## Prerequisites
@@ -39,7 +39,7 @@ import { ChatOpenAI } from '@langchain/openai';
 import { HumanMessage, SystemMessage } from '@langchain/core/messages';
 import { isEmpty, values } from 'lodash-es';
 import { ToolCall } from '@langchain/core/dist/messages/tool';
-import { getTools } from '@truto/superai-langchain-toolset';
+import { getTools } from '@truto/langchain-toolset';
 
 // Initialize the LLM
 const llm = new ChatOpenAI({
