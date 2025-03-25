@@ -111,6 +111,42 @@ This example demonstrates:
 - How to process tool responses and continue the conversation
 - How to properly handle the conversation flow until all tool calls are complete
 
+## API Reference
+
+### getTools
+
+```typescript
+getTools(
+  integratedAccountId: string,
+  config: {
+    truto: {
+      baseUrl?: string;
+      token: string;
+    };
+    methods?: Array<'list' | 'get' | 'create' | 'update' | 'delete' | 'read' | 'write' | 'custom' | string>;
+  }
+): Promise<Record<string, Tool>>
+```
+
+Returns a promise that resolves to an object containing all available tools for the specified integrated account. Each tool is a Langchain.js Tool instance that can be used with Langchain.js supported LLMs.
+
+#### Parameters
+
+- `integratedAccountId` (string): The ID of the integrated account to get tools for
+- `config` (object): Configuration object
+  - `truto` (object): Truto API configuration
+    - `baseUrl` (string, optional): Custom base URL for the Truto API
+    - `token` (string): Truto API token
+  - `methods` (array, optional): Array of method names to filter tools by. Can include:
+    - Standard CRUD operations: 'list', 'get', 'create', 'update', 'delete'
+    - Permission-based methods: 'read', 'write'
+    - Custom methods: 'custom'
+    - Specific custom method names (string)
+
+#### Returns
+
+A promise that resolves to a Record<string, Tool> where each key is the tool name and the value is a Langchain.js Tool instance.
+
 ## Running Examples
 
 The repository includes example code in the `examples` directory. To run the examples:
@@ -161,4 +197,3 @@ MIT
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
-
