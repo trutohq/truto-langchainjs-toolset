@@ -1,6 +1,6 @@
 # Truto's SuperAI Toolset for Langchain.js
 
-A powerful toolset for integrating Truto's Proxy APIs with Langchain.js applications. This package provides all the Proxy APIs configured to be used as a tool on Truto as tools to Langchain.
+A powerful toolset for integrating Truto's Proxy APIs with Langchain.js applications. This package provides all the Proxy APIs configured to be used as a tool on Truto as tools to Langchain. Read more about configuring tools on Truto [here](https://truto.one/docs/guides/tools/overview).
 
 ## Installation
 
@@ -34,6 +34,8 @@ TRUTO_API_BASE_URL=your_truto_api_base_url
 
 Here's a complete example showing how to use the toolset with Langchain.js, including handling multiple tool executions:
 
+To create or modify tools, please refer this [Truto guide](https://truto.one/docs/guides/tools/overview).
+
 ```typescript
 import { ChatOpenAI } from '@langchain/openai';
 import { HumanMessage, SystemMessage } from '@langchain/core/messages';
@@ -55,6 +57,8 @@ async function main() {
       baseUrl: process.env.TRUTO_API_BASE_URL,
       token: process.env.TRUTO_API_TOKEN as string,
     },
+    // Optional: Filter tools by specific methods
+    methods: ['list', 'get', 'create', 'update', 'delete', 'read', 'write', 'custom', 'your_custom_method_name']
   });
 
   // Bind tools to the LLM
