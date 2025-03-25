@@ -9,7 +9,7 @@ const llm = new ChatOpenAI({
   model: 'o3-mini',
 })
 
-const INTEGRATED_ACCOUNT_ID = '08b28c42-34ab-40b7-b9c7-6f0824a280df'
+const INTEGRATED_ACCOUNT_ID = 'da2516e7-f107-41e1-8aa8-3cef77c83df2'
 
 const HUMAN_PROMPT = 'Show me all the members in cloudflare'
 
@@ -21,6 +21,7 @@ async function main() {
       token: process.env.TRUTO_API_TOKEN as string,
     },
   })
+
   const llmWithTools = llm.bindTools(values(tools))
   const messages = [
     new SystemMessage(

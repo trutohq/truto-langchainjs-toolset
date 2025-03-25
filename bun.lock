@@ -5,7 +5,7 @@
       "name": "@truto/superai-langchain-toolset",
       "dependencies": {
         "@langchain/core": "0.3.42",
-        "@truto/truto-ts-sdk": "2.0.1",
+        "@truto/truto-ts-sdk": "2.0.2",
         "lodash-es": "4.17.21",
       },
       "devDependencies": {
@@ -246,7 +246,7 @@
 
     "@swc/legacy-helpers": ["@swc/helpers@0.4.14", "", { "dependencies": { "tslib": "^2.4.0" } }, "sha512-4C7nX/dvpzB7za4Ql9K81xK3HPxCpHMgwTZVyf+9JQ6VUbn9jjZVN7/Nkdz/Ugzs2CSjqnL/UPXroiVBVHUWUw=="],
 
-    "@truto/truto-ts-sdk": ["@truto/truto-ts-sdk@2.0.1", "", { "dependencies": { "lodash-es": "4.17.21", "p-queue": "8.1.0", "p-timeout": "6.1.4", "qs": "6.11.1" } }, "sha512-epJn6jsEy5aZo/UF+gofBpCg6XQLFQVpQ3Nnw9kct2MuXeSfGrkmaI8DVkB4zl1h89H2M5CWCpM7xdx1S0x95w=="],
+    "@truto/truto-ts-sdk": ["@truto/truto-ts-sdk@2.0.2", "", { "dependencies": { "lodash-es": "4.17.21", "p-queue": "8.1.0", "p-timeout": "6.1.4", "qs": "6.11.1" } }, "sha512-poimyIgTRMh3IbOKed6jdenxoZK7xMx1Dk6TfSU/Pk/iKBe19fhJW/JfrlUPEyjWArp36c656D+yGHk+o/xh9g=="],
 
     "@trysound/sax": ["@trysound/sax@0.2.0", "", {}, "sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA=="],
 

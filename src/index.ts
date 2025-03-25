@@ -120,6 +120,18 @@ export async function getTools(
         },
       }
     )
+    console.log('Registered tool', toolName, {
+      name: toolName,
+      description: availableTool.description || '',
+      schema: {
+        type: 'object',
+        properties: {
+          ...(availableTool.query_schema?.properties || {}),
+          ...(availableTool.body_schema?.properties || {}),
+        },
+        required: availableTool.required || [],
+      },
+    })
   })
 
   return tools

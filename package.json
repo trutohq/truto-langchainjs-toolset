@@ -58,7 +58,7 @@
     "typescript": "4.9.5"
   },
   "dependencies": {
-    "@truto/truto-ts-sdk": "2.0.1",
+    "@truto/truto-ts-sdk": "2.0.2",
     "@langchain/core": "0.3.42",
     "lodash-es": "4.17.21"
   },
