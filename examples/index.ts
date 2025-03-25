@@ -11,7 +11,7 @@ const llm = new ChatOpenAI({
 
 const INTEGRATED_ACCOUNT_ID = '08b28c42-34ab-40b7-b9c7-6f0824a280df'
 
-const HUMAN_PROMPT = 'Do all users in my cloudflare account have 2fa enabled?'
+const HUMAN_PROMPT = 'Show me all the members in cloudflare'
 
 async function main() {
   // Truto's magic sauce to get all available tools for a customer connection
