@@ -2,6 +2,9 @@
 
 A powerful toolset for integrating Truto's Proxy APIs with Langchain.js applications. This package provides all the Proxy APIs configured to be used as a tool on Truto as tools to Langchain. Read more about configuring tools on Truto [here](https://truto.one/docs/guides/tools/overview).
 
+![tool_calling](https://github.com/user-attachments/assets/929974df-20b3-4fbc-917c-cf7c0254fc49)
+
+
 ## Installation
 
 ```bash
