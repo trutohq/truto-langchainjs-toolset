@@ -16,7 +16,11 @@ const HUMAN_PROMPT =
   'Is 2fa enabled for all the users in my cloudflare account?'
 
 async function main() {
-  const spinner = ora('Fetching tools').start()
+  const spinner = ora('...').start()
+
+  spinner.info('Question: ' + HUMAN_PROMPT)
+
+  spinner.start('Fetching tools')
 
   // Truto's magic sauce to get all available tools for a customer connection
   const tools = await getTools(INTEGRATED_ACCOUNT_ID, {
@@ -51,7 +55,7 @@ async function main() {
     messages.push(aiMessage)
 
     if (isEmpty(aiMessage.tool_calls)) {
-      spinner.succeed(aiMessage.content.toString())
+      spinner.succeed('Answer: ' + aiMessage.content.toString())
       break
     }
 
