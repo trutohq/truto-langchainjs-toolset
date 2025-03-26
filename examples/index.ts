@@ -3,17 +3,21 @@ import { HumanMessage, SystemMessage } from '@langchain/core/messages'
 import { isEmpty, values } from 'lodash-es'
 import { ToolCall } from '@langchain/core/dist/messages/tool'
 import { getTools } from '../src'
+import ora from 'ora'
 
 // Make sure to set the OPENAI_API_KEY environment variable
 const llm = new ChatOpenAI({
   model: 'o3-mini',
 })
 
-const INTEGRATED_ACCOUNT_ID = 'da2516e7-f107-41e1-8aa8-3cef77c83df2'
+const INTEGRATED_ACCOUNT_ID = '64f860f2-7556-466d-83f0-245322e8f160'
 
-const HUMAN_PROMPT = 'Show me all the members in cloudflare'
+const HUMAN_PROMPT =
+  'Is 2fa enabled for all the users in my cloudflare account?'
 
 async function main() {
+  const spinner = ora('Fetching tools').start()
+
   // Truto's magic sauce to get all available tools for a customer connection
   const tools = await getTools(INTEGRATED_ACCOUNT_ID, {
     truto: {
@@ -23,32 +27,34 @@ async function main() {
   })
 
   const llmWithTools = llm.bindTools(values(tools))
+
   const messages = [
     new SystemMessage(
       'You are an assistant who uses the available tools to give the user an answer. Make sure you respect the arguments required for a tool call, use them to filter down the results wherever necessary. All the tools return a JSON string response, so parse the output correctly and use them in the arguments.'
     ),
     new HumanMessage(HUMAN_PROMPT),
   ]
+
   let toolCalls: ToolCall[] = []
+
   do {
     for (const toolCall of toolCalls) {
+      spinner.start(`Calling tool ${toolCall.name}`)
       const toolResponse = await tools[toolCall.name].invoke(toolCall)
-      console.log('\n===================\n')
-      console.log(
-        'Called tool',
-        toolCall.name,
-        toolCall.args,
-        toolResponse.content
-      )
+      spinner.succeed(`Tool ${toolCall.name} called successfully`)
       messages.push(toolResponse)
     }
+
+    spinner.start('Thinking...')
+
     const aiMessage = await llmWithTools.invoke(messages)
     messages.push(aiMessage)
+
     if (isEmpty(aiMessage.tool_calls)) {
-      console.log('\n\n===================\n\n')
-      console.log(aiMessage.content)
+      spinner.succeed(aiMessage.content.toString())
       break
     }
+
     toolCalls = aiMessage.tool_calls || []
   } while (!isEmpty(toolCalls))
 }
