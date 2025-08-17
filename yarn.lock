@@ -953,10 +953,10 @@
   dependencies:
     tslib "^2.4.0"
 
-"@truto/truto-ts-sdk@2.0.5":
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/@truto/truto-ts-sdk/-/truto-ts-sdk-2.0.5.tgz#52749b055424bf1d048dead000a6be6b3fa3d6f6"
-  integrity sha512-ikEGmwNH0gOtVhCF4UboPI/q0qvwUiAuUqItMm11uKCqftxozOxrE0gYfe0wEgP0TJgnaaRoQVyoMYIePhWiIQ==
+"@truto/truto-ts-sdk@2.0.6":
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/@truto/truto-ts-sdk/-/truto-ts-sdk-2.0.6.tgz#54714a5e3123621c9a17d09972d8de5dfe906e61"
+  integrity sha512-78d2zBtTKidluYB3KMt0jCTap6EqP7sg28LKqV/sigtvAr3j3jyp5LDfJrOZ9Ac3xxRWgUxrXnRslmNVo5tOHw==
   dependencies:
     lodash-es "4.17.21"
     p-queue "8.1.0"

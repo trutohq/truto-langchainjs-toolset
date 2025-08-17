@@ -13,6 +13,7 @@ export const getPropertiesBySchema = (
 export async function getTools(
   integratedAccountId: string,
   config: {
+    tags?: string[]
     methods?: string[]
     truto: {
       baseUrl?: string
@@ -29,82 +30,98 @@ export async function getTools(
 
   const availableTools = await trutoApi.integratedAccount.tools(
     integratedAccountId,
-    config?.methods
+    config?.methods,
+    config?.tags
   )
 
   each(availableTools, availableTool => {
     const toolName = availableTool.name
     tools[toolName] = tool<Record<string, any>>(
       async config => {
-        const resourceName = availableTool.resource
-        const methodToCall = availableTool.method
-        const query =
-          getPropertiesBySchema(config, availableTool.query_schema) || {}
-        const body =
-          getPropertiesBySchema(config, availableTool.body_schema) || {}
-        switch (methodToCall) {
-          case 'list':
-            return JSON.stringify(
-              await trutoApi.proxyApi
-                .list({
+        try {
+          const resourceName = availableTool.resource
+          const methodToCall = availableTool.method
+          const query =
+            getPropertiesBySchema(config, availableTool.query_schema) || {}
+          const body =
+            getPropertiesBySchema(config, availableTool.body_schema) || {}
+          switch (methodToCall) {
+            case 'list':
+              return JSON.stringify(
+                await trutoApi.proxyApi
+                  .list({
+                    integrated_account_id: integratedAccountId,
+                    resource: resourceName,
+                    ...query,
+                  })
+                  .next(),
+                null,
+                2
+              )
+            case 'get':
+              return JSON.stringify(
+                await trutoApi.proxyApi.get(config?.id, {
                   integrated_account_id: integratedAccountId,
                   resource: resourceName,
                   ...query,
-                })
-                .next(),
-              null,
-              2
-            )
-          case 'get':
-            return JSON.stringify(
-              await trutoApi.proxyApi.get(config?.id, {
-                integrated_account_id: integratedAccountId,
-                resource: resourceName,
-                ...query,
-              }),
-              null,
-              2
-            )
-          case 'create':
-            return JSON.stringify(
-              await trutoApi.proxyApi.create(body, {
-                integrated_account_id: integratedAccountId,
-                resource: resourceName,
-                ...query,
-              }),
-              null,
-              2
-            )
-          case 'update':
-            return JSON.stringify(
-              await trutoApi.proxyApi.update(config?.id, body, {
-                integrated_account_id: integratedAccountId,
-                resource: resourceName,
-                ...query,
-              }),
-              null,
-              2
-            )
-          case 'delete':
-            return JSON.stringify(
-              await trutoApi.proxyApi.delete(config?.id, {
-                integrated_account_id: integratedAccountId,
-                resource: resourceName,
-                ...query,
-              }),
-              null,
-              2
-            )
-          default:
-            return JSON.stringify(
-              await trutoApi.proxyApi.customMethod(methodToCall, body, {
-                integrated_account_id: integratedAccountId,
-                resource: resourceName,
-                ...query,
-              }),
-              null,
-              2
-            )
+                }),
+                null,
+                2
+              )
+            case 'create':
+              return JSON.stringify(
+                await trutoApi.proxyApi.create(body, {
+                  integrated_account_id: integratedAccountId,
+                  resource: resourceName,
+                  ...query,
+                }),
+                null,
+                2
+              )
+            case 'update':
+              return JSON.stringify(
+                await trutoApi.proxyApi.update(config?.id, body, {
+                  integrated_account_id: integratedAccountId,
+                  resource: resourceName,
+                  ...query,
+                }),
+                null,
+                2
+              )
+            case 'delete':
+              return JSON.stringify(
+                await trutoApi.proxyApi.delete(config?.id, {
+                  integrated_account_id: integratedAccountId,
+                  resource: resourceName,
+                  ...query,
+                }),
+                null,
+                2
+              )
+            default:
+              return JSON.stringify(
+                await trutoApi.proxyApi.customMethod(methodToCall, body, {
+                  integrated_account_id: integratedAccountId,
+                  resource: resourceName,
+                  ...query,
+                }),
+                null,
+                2
+              )
+          }
+        } catch (error) {
+          return JSON.stringify(
+            {
+              error: true,
+              message:
+                error instanceof Error
+                  ? error.message
+                  : 'Unknown error occurred',
+              details: error instanceof Error ? error.stack : String(error),
+            },
+            null,
+            2
+          )
         }
       },
       {
