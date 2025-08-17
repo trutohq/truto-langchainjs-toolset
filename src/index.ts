@@ -110,18 +110,15 @@ export async function getTools(
               )
           }
         } catch (error) {
-          return JSON.stringify(
-            {
-              error: true,
-              message:
-                error instanceof Error
-                  ? error.message
-                  : 'Unknown error occurred',
-              details: error instanceof Error ? error.stack : String(error),
-            },
-            null,
-            2
-          )
+          try {
+            return JSON.stringify(error, null, 2)
+          } catch (stringifyError) {
+            try {
+              return String(error)
+            } catch (finalError) {
+              return 'Unknown error occurred'
+            }
+          }
         }
       },
       {
