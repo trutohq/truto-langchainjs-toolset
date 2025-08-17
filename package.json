@@ -60,7 +60,7 @@
   },
   "dependencies": {
     "@langchain/core": "0.3.42",
-    "@truto/truto-ts-sdk": "2.0.5",
+    "@truto/truto-ts-sdk": "2.0.6",
     "lodash-es": "4.17.21"
   },
   "scripts": {

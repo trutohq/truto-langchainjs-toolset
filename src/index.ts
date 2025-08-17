@@ -13,6 +13,7 @@ export const getPropertiesBySchema = (
 export async function getTools(
   integratedAccountId: string,
   config: {
+    tags?: string[]
     methods?: string[]
     truto: {
       baseUrl?: string
@@ -29,7 +30,8 @@ export async function getTools(
 
   const availableTools = await trutoApi.integratedAccount.tools(
     integratedAccountId,
-    config?.methods
+    config?.methods,
+    config?.tags
   )
 
   each(availableTools, availableTool => {
@@ -108,11 +110,18 @@ export async function getTools(
               )
           }
         } catch (error) {
-          return JSON.stringify({
-            error: true,
-            message: error instanceof Error ? error.message : 'Unknown error occurred',
-            details: error instanceof Error ? error.stack : String(error)
-          }, null, 2)
+          return JSON.stringify(
+            {
+              error: true,
+              message:
+                error instanceof Error
+                  ? error.message
+                  : 'Unknown error occurred',
+              details: error instanceof Error ? error.stack : String(error),
+            },
+            null,
+            2
+          )
         }
       },
       {
