@@ -36,8 +36,9 @@ export async function getTools(
 
   each(availableTools, availableTool => {
     const toolName = availableTool.name
-    tools[toolName] = tool<Record<string, any>>(
-      async config => {
+    tools[toolName] = tool(
+      async (input: unknown) => {
+        const config = input as Record<string, any>
         try {
           const resourceName = availableTool.resource
           const methodToCall = availableTool.method
