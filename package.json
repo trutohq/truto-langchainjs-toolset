@@ -72,6 +72,6 @@
   "resolutions": {
     "word-wrap": "npm:@aashutoshrathi/word-wrap@1.2.5",
     "semver": "npm:semver@7.5.4",
-    "form-data": "npm:form-data@4.0.4"
+    "form-data": "npm:form-data@4.0.6"
   }
 }
