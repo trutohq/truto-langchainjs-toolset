@@ -70,6 +70,7 @@
     "prepublishOnly": "yarn build"
   },
   "resolutions": {
+    "baseline-browser-mapping": "2.11.25",
     "word-wrap": "npm:@aashutoshrathi/word-wrap@1.2.5",
     "semver": "npm:semver@7.5.4",
     "form-data": "npm:form-data@4.0.6",
@@ -82,7 +83,7 @@
     "brace-expansion": "5.0.8",
     "minimatch": "3.1.5",
     "picomatch": "2.3.2",
-    "svgo": "2.8.3",
+    "svgo": "2.8.4",
     "@parcel/reporter-dev-server": "2.16.4",
     "zod": "npm:zod@4.4.3"
   }
