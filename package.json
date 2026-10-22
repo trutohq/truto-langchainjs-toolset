@@ -6,7 +6,10 @@
   },
   "version": "0.1.6",
   "description": "SuperAI toolset for TypeScript. Works in Langchain.js.",
-  "repository": "https://github.com/trutohq/truto-langchainjs-toolset.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trutohq/truto-langchainjs-toolset.git"
+  },
   "source": "src/index.ts",
   "main": "dist/main.cjs",
   "module": "dist/module.js",
