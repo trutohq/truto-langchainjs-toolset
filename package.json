@@ -4,7 +4,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "SuperAI toolset for TypeScript. Works in Langchain.js.",
   "repository": {
     "type": "git",
