@@ -15,11 +15,9 @@ yarn add @truto/langchain-toolset
 
 ## Prerequisites
 
-- Node.js 22.14.0 or higher
-- Yarn 1.22.19 or higher
-- Truto API credentials
-- [Bun](https://bun.sh) (for running examples)
-- OpenAI API key (only needed for running examples)
+- Node.js 22.12 or later, with any package manager (npm, Yarn, pnpm or Bun)
+- A Truto API token
+- To run the examples only: [Bun](https://bun.sh) and an OpenAI API key
 
 ## Environment Setup
 
@@ -180,6 +178,8 @@ The example demonstrates how to:
 - Process multi-turn conversations with tool usage
 
 ## Development
+
+Working on this repository uses Node.js 22.14.0 and Yarn 1.22.19 (pinned with [Volta](https://volta.sh)). Using the package does not need them.
 
 To build the package locally:
 
